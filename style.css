@@ -6,15 +6,15 @@
 }
 
 :root {
-  /* Romantic + Manly: Warm Espresso, Burgundy, Copper, Cream */
-  --bg: #1e1a18;            /* warm espresso (was dead black #121418) */
-  --bg-soft: #2a2320;       /* warm dark cocoa */
-  --ink: #f3e8dc;           /* warm cream text (was stark white) */
-  --accent: #c08552;        /* copper / rose-gold (was gold) */
-  --accent-dark: #a66b3f;   /* deeper copper */
-  --card: #2a2320;          /* warm dark card */
-  --primary: #7d2a3a;       /* deep burgundy — romantic + masculine */
-  --border: #5a4636;        /* bronze divider */
+  /* Burgundy + Gold + White */
+  --bg: #2b1218;            /* deep burgundy background */
+  --bg-soft: #3a1a22;       /* slightly lighter burgundy */
+  --ink: #fdfaf5;           /* warm white text */
+  --accent: #d4af37;        /* classic gold */
+  --accent-dark: #b5952f;   /* deeper gold */
+  --card: #3a1a22;          /* burgundy card */
+  --primary: #7d2a3a;       /* burgundy accent */
+  --border: #d4af37;        /* gold borders */
   --shadow: rgba(0, 0, 0, 0.5);
   --font-display: "Georgia", "Times New Roman", serif;
   --font-body: -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -31,6 +31,21 @@ body {
   overflow-x: hidden;
 }
 
+/* ---------- BLURRED PHOTO BACKDROP (all screens) ---------- */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image: url('bg.jpg');
+  background-size: cover;
+  background-position: center;
+  filter: blur(18px) brightness(0.35) saturate(1.1);
+  transform: scale(1.1);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
 /* ---------- SCREEN SYSTEM ---------- */
 .screen {
   display: none;
@@ -39,6 +54,8 @@ body {
   padding: 2rem 1.25rem;
   align-items: center;
   justify-content: center;
+  position: relative;
+  z-index: 1;
 }
 
 .screen.active {
@@ -89,12 +106,11 @@ h2 {
 /* ---------- SCREEN 1: GREETING ---------- */
 #screen-greeting {
   cursor: pointer;
-  background: linear-gradient(160deg, var(--bg) 0%, var(--bg-soft) 100%);
+  background: linear-gradient(160deg, rgba(43,18,24,0.6) 0%, rgba(58,26,34,0.6) 100%);
   position: relative;
   overflow: hidden;
 }
 
-/* THIS IS THE BACKGROUND IMAGE CODE */
 .bg-image {
   position: absolute;
   top: 0;
@@ -104,7 +120,7 @@ h2 {
   background-image: url('bg.jpg');
   background-size: cover;
   background-position: center;
-  opacity: 0.20; /* 20% visible. Change to 0.3 if you want it brighter */
+  opacity: 0.20;
   z-index: 0;
 }
 
@@ -154,7 +170,7 @@ h2 {
 
 #pin-input:focus {
   border-color: var(--ink);
-  box-shadow: 0 0 0 4px rgba(192, 133, 82, 0.18);
+  box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.18);
 }
 
 #unlock-btn {
@@ -172,7 +188,7 @@ h2 {
   transition: background 0.2s, transform 0.1s;
 }
 
-#unlock-btn:hover  { background: var(--primary); color: var(--ink); }
+#unlock-btn:hover  { background: var(--ink); color: var(--bg); }
 #unlock-btn:active { transform: scale(0.98); }
 
 .error-msg {
@@ -288,7 +304,7 @@ h2 {
   border-radius: 18px;
   padding: 1.75rem 1.5rem;
   box-shadow: 0 4px 14px var(--shadow);
-  border-left: 4px solid var(--primary);
+  border-left: 4px solid var(--accent);
 }
 
 .letter-body p {
