@@ -6,14 +6,16 @@
 }
 
 :root {
-  /* New Manly Colors: Dark Charcoal, Slate, and subtle Gold accent */
-  --bg: #121418; 
-  --bg-soft: #1a1d24;
-  --ink: #f0f2f5; /* White/Light Gray text */
-  --accent: #d4af37; /* Subtle Gold */
-  --accent-dark: #b5952f;
-  --card: #1f232b; /* Dark card background */
-  --shadow: rgba(0, 0, 0, 0.4);
+  /* Romantic + Manly: Warm Espresso, Burgundy, Copper, Cream */
+  --bg: #1e1a18;            /* warm espresso (was dead black #121418) */
+  --bg-soft: #2a2320;       /* warm dark cocoa */
+  --ink: #f3e8dc;           /* warm cream text (was stark white) */
+  --accent: #c08552;        /* copper / rose-gold (was gold) */
+  --accent-dark: #a66b3f;   /* deeper copper */
+  --card: #2a2320;          /* warm dark card */
+  --primary: #7d2a3a;       /* deep burgundy — romantic + masculine */
+  --border: #5a4636;        /* bronze divider */
+  --shadow: rgba(0, 0, 0, 0.5);
   --font-display: "Georgia", "Times New Roman", serif;
   --font-body: -apple-system, "Segoe UI", Roboto, sans-serif;
 }
@@ -109,8 +111,8 @@ h2 {
 .greeting-content {
   text-align: center;
   max-width: 26rem;
-  position: relative; /* Added so text sits on top of the image */
-  z-index: 1; /* Added so text sits on top of the image */
+  position: relative;
+  z-index: 1;
 }
 .tap-hint {
   margin-top: 2.5rem;
@@ -152,7 +154,7 @@ h2 {
 
 #pin-input:focus {
   border-color: var(--ink);
-  box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.15);
+  box-shadow: 0 0 0 4px rgba(192, 133, 82, 0.18);
 }
 
 #unlock-btn {
@@ -162,7 +164,7 @@ h2 {
   font-family: var(--font-body);
   letter-spacing: 0.08em;
   font-weight: bold;
-  color: #121418;
+  color: var(--bg);
   background: var(--accent);
   border: none;
   border-radius: 14px;
@@ -170,13 +172,13 @@ h2 {
   transition: background 0.2s, transform 0.1s;
 }
 
-#unlock-btn:hover  { background: var(--ink); }
+#unlock-btn:hover  { background: var(--primary); color: var(--ink); }
 #unlock-btn:active { transform: scale(0.98); }
 
 .error-msg {
   margin-top: 0.9rem;
   font-size: 0.85rem;
-  color: #ff6b6b;
+  color: #e07a7a;
   min-height: 1.2em;
 }
 
@@ -213,7 +215,7 @@ h2 {
   font-family: var(--font-body);
   color: var(--ink);
   background: var(--card);
-  border: 1.5px solid transparent;
+  border: 1.5px solid var(--border);
   border-radius: 16px;
   box-shadow: 0 4px 14px var(--shadow);
   cursor: pointer;
@@ -259,6 +261,7 @@ h2 {
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 4px 14px var(--shadow);
+  border: 1px solid var(--border);
 }
 
 .photo-card img {
@@ -285,6 +288,7 @@ h2 {
   border-radius: 18px;
   padding: 1.75rem 1.5rem;
   box-shadow: 0 4px 14px var(--shadow);
+  border-left: 4px solid var(--primary);
 }
 
 .letter-body p {
