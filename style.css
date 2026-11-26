@@ -7,15 +7,15 @@
 
 :root {
   /* Burgundy + Gold + White */
-  --bg: #2b1218;            /* deep burgundy background */
-  --bg-soft: #3a1a22;       /* slightly lighter burgundy */
-  --ink: #fdfaf5;           /* warm white text */
-  --accent: #d4af37;        /* classic gold */
-  --accent-dark: #b5952f;   /* deeper gold */
-  --card: #3a1a22;          /* burgundy card */
-  --primary: #7d2a3a;       /* burgundy accent */
-  --border: #d4af37;        /* gold borders */
-  --shadow: rgba(0, 0, 0, 0.5);
+  --bg: #2b1218;
+  --bg-soft: #3a1a22;
+  --ink: #fdfaf5;
+  --accent: #d4af37;
+  --accent-dark: #b5952f;
+  --card: rgba(58, 26, 34, 0.82);   /* translucent burgundy card so photo shows through */
+  --primary: #7d2a3a;
+  --border: #d4af37;
+  --shadow: rgba(0, 0, 0, 0.55);
   --font-display: "Georgia", "Times New Roman", serif;
   --font-body: -apple-system, "Segoe UI", Roboto, sans-serif;
 }
@@ -31,7 +31,7 @@ body {
   overflow-x: hidden;
 }
 
-/* ---------- BLURRED PHOTO BACKDROP (all screens) ---------- */
+/* ---------- CLEAR PHOTO BACKDROP (all screens) ---------- */
 body::before {
   content: "";
   position: fixed;
@@ -40,10 +40,20 @@ body::before {
   background-image: url('bg.jpg');
   background-size: cover;
   background-position: center;
-  filter: blur(18px) brightness(0.35) saturate(1.1);
-  transform: scale(1.1);
-  opacity: 0.55;
+  filter: brightness(0.55) saturate(1.05);  /* clear — no blur, just slightly darkened for text contrast */
   pointer-events: none;
+}
+
+/* Soft vignette so edges fade and center content pops */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at center, transparent 45%, rgba(43, 18, 24, 0.75) 100%),
+    linear-gradient(180deg, rgba(43, 18, 24, 0.35) 0%, rgba(43, 18, 24, 0.55) 100%);
 }
 
 /* ---------- SCREEN SYSTEM ---------- */
@@ -83,6 +93,7 @@ h1, h2 {
   font-weight: 400;
   line-height: 1.15;
   color: var(--ink);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.55); /* keeps headings readable over photo */
 }
 
 h1 {
@@ -98,30 +109,23 @@ h2 {
 .subtitle {
   font-size: 0.95rem;
   color: var(--accent);
-  opacity: 0.85;
+  opacity: 0.9;
   line-height: 1.6;
   max-width: 22rem;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
 }
 
 /* ---------- SCREEN 1: GREETING ---------- */
 #screen-greeting {
   cursor: pointer;
-  background: linear-gradient(160deg, rgba(43,18,24,0.6) 0%, rgba(58,26,34,0.6) 100%);
+  background: transparent; /* let the body photo show */
   position: relative;
   overflow: hidden;
 }
 
+/* Legacy block — kept but made invisible since body::before now handles the photo */
 .bg-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('bg.jpg');
-  background-size: cover;
-  background-position: center;
-  opacity: 0.20;
-  z-index: 0;
+  display: none;
 }
 
 .greeting-content {
@@ -137,6 +141,7 @@ h2 {
   text-transform: uppercase;
   color: var(--accent);
   animation: pulse 2.2s ease-in-out infinite;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
 }
 
 @keyframes pulse {
@@ -163,6 +168,7 @@ h2 {
   border: 1.5px solid var(--accent);
   border-radius: 14px;
   background: var(--card);
+  backdrop-filter: blur(6px); /* glassy so photo shows through faintly */
   color: var(--ink);
   outline: none;
   transition: border-color 0.2s, box-shadow 0.2s;
@@ -170,7 +176,7 @@ h2 {
 
 #pin-input:focus {
   border-color: var(--ink);
-  box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.18);
+  box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.25);
 }
 
 #unlock-btn {
@@ -231,6 +237,7 @@ h2 {
   font-family: var(--font-body);
   color: var(--ink);
   background: var(--card);
+  backdrop-filter: blur(6px);
   border: 1.5px solid var(--border);
   border-radius: 16px;
   box-shadow: 0 4px 14px var(--shadow);
@@ -261,6 +268,7 @@ h2 {
   padding: 0.3rem 0;
   margin-bottom: 1.5rem;
   font-family: var(--font-body);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
 }
 
 .back-btn:hover { text-decoration: underline; }
@@ -274,6 +282,7 @@ h2 {
 
 .photo-card {
   background: var(--card);
+  backdrop-filter: blur(6px);
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 4px 14px var(--shadow);
@@ -301,6 +310,7 @@ h2 {
 
 .letter-body {
   background: var(--card);
+  backdrop-filter: blur(6px);
   border-radius: 18px;
   padding: 1.75rem 1.5rem;
   box-shadow: 0 4px 14px var(--shadow);
