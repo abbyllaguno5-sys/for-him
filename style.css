@@ -87,11 +87,28 @@ h2 {
 #screen-greeting {
   cursor: pointer;
   background: linear-gradient(160deg, var(--bg) 0%, var(--bg-soft) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('photos/bg.jpg');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.15; /* Change this to 0.1 for fainter, or 0.25 for more visible */
+  z-index: 0; 
 }
 
 .greeting-content {
   text-align: center;
   max-width: 26rem;
+  position: relative;
+  z-index: 1; 
 }
 
 .greeting-content h1 {
