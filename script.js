@@ -1,7 +1,5 @@
 /* ---------- CONFIG ---------- */
-// Change this to your real 6-digit anniversary date.
-// Example: got together March 14, 2023 -> "031423"
-const CORRECT_PIN = "120323";
+const CORRECT_PIN = "120323"; 
 
 /* ---------- ELEMENTS ---------- */
 const screens = document.querySelectorAll(".screen");
@@ -38,7 +36,7 @@ function tryUnlock() {
     pinInput.value = "";
     showScreen("screen-menu");
   } else {
-    pinError.textContent = "That's not our date… try again 💭";
+    pinError.textContent = "That's not our date… try again.";
     pinInput.value = "";
     pinInput.focus();
     pinContent.classList.add("shake");
@@ -52,7 +50,6 @@ pinInput.addEventListener("keydown", (e) => {
   if (e.key === "Enter") tryUnlock();
 });
 
-// Only allow digits as he types
 pinInput.addEventListener("input", () => {
   pinInput.value = pinInput.value.replace(/\D/g, "").slice(0, 6);
 });
