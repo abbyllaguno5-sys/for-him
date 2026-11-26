@@ -1,0 +1,72 @@
+/* ---------- CONFIG ---------- */
+// Change this to your real 6-digit anniversary date.
+// Example: got together March 14, 2023 -> "031423"
+const CORRECT_PIN = "120323";
+
+/* ---------- ELEMENTS ---------- */
+const screens = document.querySelectorAll(".screen");
+const greetingScreen = document.getElementById("screen-greeting");
+const pinInput = document.getElementById("pin-input");
+const unlockBtn = document.getElementById("unlock-btn");
+const pinError = document.getElementById("pin-error");
+const pinContent = document.querySelector(".pin-content");
+const menuButtons = document.querySelectorAll(".menu-btn");
+const backButtons = document.querySelectorAll(".back-btn");
+
+/* ---------- SCREEN SWITCHING ---------- */
+function showScreen(id) {
+  screens.forEach((s) => s.classList.remove("active"));
+  const target = document.getElementById(id);
+  if (target) {
+    target.classList.add("active");
+    window.scrollTo(0, 0);
+  }
+}
+
+/* ---------- SCREEN 1 -> SCREEN 2 ---------- */
+greetingScreen.addEventListener("click", () => {
+  showScreen("screen-pin");
+  setTimeout(() => pinInput.focus(), 300);
+});
+
+/* ---------- PIN LOGIC ---------- */
+function tryUnlock() {
+  const entered = pinInput.value.trim();
+
+  if (entered === CORRECT_PIN) {
+    pinError.textContent = "";
+    pinInput.value = "";
+    showScreen("screen-menu");
+  } else {
+    pinError.textContent = "That's not our date… try again 💭";
+    pinInput.value = "";
+    pinInput.focus();
+    pinContent.classList.add("shake");
+    setTimeout(() => pinContent.classList.remove("shake"), 400);
+  }
+}
+
+unlockBtn.addEventListener("click", tryUnlock);
+
+pinInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") tryUnlock();
+});
+
+// Only allow digits as he types
+pinInput.addEventListener("input", () => {
+  pinInput.value = pinInput.value.replace(/\D/g, "").slice(0, 6);
+});
+
+/* ---------- SCREEN 3 -> SCREENS 4 & 5 ---------- */
+menuButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    showScreen(btn.dataset.target);
+  });
+});
+
+/* ---------- BACK BUTTONS ---------- */
+backButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    showScreen(btn.dataset.target);
+  });
+});

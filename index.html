@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Anniversary, My Love! 💌</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- SCREEN 1: GREETING -->
+  <section id="screen-greeting" class="screen active">
+    <div class="greeting-content">
+      <p class="small-label">for you, always</p>
+      <h1>Happy 3rd<br />Anniversary</h1>
+      <p class="subtitle">my favorite person, my best friend, my home</p>
+      <p class="tap-hint">tap anywhere to continue</p>
+    </div>
+  </section>
+
+  <!-- SCREEN 2: PIN LOCK -->
+  <section id="screen-pin" class="screen">
+    <div class="pin-content">
+      <p class="small-label">a little secret</p>
+      <h2>Unlock with our date</h2>
+      <p class="subtitle">hint: the day we started (6 digits)</p>
+      <input
+        type="password"
+        id="pin-input"
+        inputmode="numeric"
+        maxlength="6"
+        placeholder="••••••"
+        autocomplete="off"
+      />
+      <button id="unlock-btn">Unlock</button>
+      <p id="pin-error" class="error-msg"></p>
+    </div>
+  </section>
+
+  <!-- SCREEN 3: MENU -->
+  <section id="screen-menu" class="screen">
+    <div class="menu-content">
+      <p class="small-label">welcome in</p>
+      <h2>What would you like to see?</h2>
+      <div class="menu-buttons">
+        <button class="menu-btn" data-target="screen-memories">
+          <span class="menu-icon">📸</span>
+          <span>Memories</span>
+        </button>
+        <button class="menu-btn" data-target="screen-letter">
+          <span class="menu-icon">💌</span>
+          <span>My Love Letter</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 4: MEMORIES -->
+  <section id="screen-memories" class="screen">
+    <div class="content-wrapper">
+      <button class="back-btn" data-target="screen-menu">← back</button>
+      <h2>Our Memories</h2>
+      <div class="photo-grid">
+
+        <figure class="photo-card">
+          <img src="photos/photo1.jpg" alt="Our first date" />
+          <figcaption>the day everything started</figcaption>
+        </figure>
+
+        <figure class="photo-card">
+          <img src="photos/photo2.jpg" alt="A funny moment" />
+          <figcaption>when you made me laugh until I cried</figcaption>
+        </figure>
+
+        <figure class="photo-card">
+          <img src="photos/photo3.jpg" alt="A trip together" />
+          <figcaption>our little adventure</figcaption>
+        </figure>
+
+        <figure class="photo-card">
+          <img src="photos/photo4.jpg" alt="A quiet moment" />
+          <figcaption>my favorite kind of quiet</figcaption>
+        </figure>
+
+        <figure class="photo-card">
+          <img src="photos/photo5.jpg" alt="A celebration" />
+          <figcaption>celebrating us</figcaption>
+        </figure>
+
+        <figure class="photo-card">
+          <img src="photos/photo6.jpg" alt="Recent photo" />
+          <figcaption>to be continued…</figcaption>
+        </figure>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 5: LOVE LETTER -->
+  <section id="screen-letter" class="screen">
+    <div class="content-wrapper letter-wrapper">
+      <button class="back-btn" data-target="screen-menu">← back</button>
+      <h2>My Love Letter</h2>
+      <div class="letter-body">
+        <p>My dearest,</p>
+
+        <p>
+          Three years. It sounds like such a small number until I think about
+          everything we've shared inside it. I wanted to build you something
+          that wasn't just a card you'd read once and put in a drawer — something
+          you could open again on a bad day and remember that you are loved.
+        </p>
+
+        <p>
+          [Write your own paragraphs here. Tell him about the first time you
+          knew, about a funny inside joke, about a moment he probably doesn't
+          even remember but you do. Be specific. Specific is what makes it
+          yours.]
+        </p>
+
+        <p>
+          [Add another paragraph. What are you looking forward to? What do you
+          appreciate about him that you don't say out loud enough?]
+        </p>
+
+        <p>
+          Thank you for three years of being my favorite person. Here's to
+          many more.
+        </p>
+
+        <p class="signature">Always yours,<br />Lovey</p>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
