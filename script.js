@@ -23,6 +23,14 @@ function showScreen(id) {
 
 /* ---------- SCREEN 1 -> SCREEN 2 ---------- */
 greetingScreen.addEventListener("click", () => {
+  // THIS PLAYS THE MUSIC
+  const music = document.getElementById("bg-music");
+  if (music) {
+    music.volume = 0.4; // 0.4 means 40% volume. You can change this to 0.2 if it's too loud.
+    music.play().catch(e => console.log("Audio play blocked by browser"));
+  }
+
+  // This switches the screen
   showScreen("screen-pin");
   setTimeout(() => pinInput.focus(), 300);
 });
